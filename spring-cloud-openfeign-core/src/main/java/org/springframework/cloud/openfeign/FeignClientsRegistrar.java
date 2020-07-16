@@ -236,6 +236,7 @@ class FeignClientsRegistrar
 		String contextId = getContextId(attributes);
 		definition.addPropertyValue("contextId", contextId);
 		definition.addPropertyValue("type", className);
+		definition.addPropertyValue("stub",attributes.get("stub") );
 		definition.addPropertyValue("decode404", attributes.get("decode404"));
 		definition.addPropertyValue("fallback", attributes.get("fallback"));
 		definition.addPropertyValue("fallbackFactory", attributes.get("fallbackFactory"));

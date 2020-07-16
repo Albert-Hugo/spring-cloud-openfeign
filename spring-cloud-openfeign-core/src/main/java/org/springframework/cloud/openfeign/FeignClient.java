@@ -112,6 +112,7 @@ public @interface FeignClient {
 	 * @return fallback factory for the specified Feign client interface
 	 */
 	Class<?> fallbackFactory() default void.class;
+	Class<?> stub() default void.class;
 
 	/**
 	 * @return path prefix to be used by all method-level mappings.

@@ -84,8 +84,24 @@ public class FeignBuilderCustomizerTests {
 		feignClientFactoryBean.setName("test");
 		feignClientFactoryBean.setType(FeignClientFactoryTests.TestType.class);
 		feignClientFactoryBean.setPath("");
+		feignClientFactoryBean.setStub(Stub.class);
 		feignClientFactoryBean.setUrl("http://some.absolute.url");
 		return feignClientFactoryBean;
+	}
+
+	public static class Stub implements FeignHttpClientUrlTests.UrlClient {
+		private FeignHttpClientUrlTests.UrlClient target;
+
+		public Stub(FeignHttpClientUrlTests.UrlClient target) {
+			this.target = target;
+		}
+
+
+		@Override
+		public FeignHttpClientUrlTests.Hello getHello() {
+			System.out.println("proxy invoke");
+			return this.target.getHello();
+		}
 	}
 
 	@Configuration(proxyBeanMethods = false)

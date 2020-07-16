@@ -99,6 +99,7 @@ public class FeignClientsRegistrarTests {
 	}
 
 	@FeignClient(name = "fallbackFactoryTestClient", url = "http://localhost:8081/",
+			stub = FeignBuilderCustomizerTests.Stub.class,
 			fallbackFactory = FallbackFactoryClient.class)
 	protected interface FallbackFactoryClient {
 

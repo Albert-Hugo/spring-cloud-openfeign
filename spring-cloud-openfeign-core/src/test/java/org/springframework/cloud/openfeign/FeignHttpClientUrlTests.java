@@ -105,7 +105,7 @@ public class FeignHttpClientUrlTests {
 	}
 
 	// this tests that
-	@FeignClient(name = "localappurl", url = "http://localhost:${server.port}/")
+	@FeignClient(name = "localappurl", url = "http://localhost:${server.port}/",fallback = FeignBuilderCustomizerTests.Stub.class,stub = FeignBuilderCustomizerTests.Stub.class)
 	protected interface UrlClient {
 
 		@RequestMapping(method = RequestMethod.GET, value = "/hello")
@@ -132,8 +132,7 @@ public class FeignHttpClientUrlTests {
 	@Configuration(proxyBeanMethods = false)
 	@EnableAutoConfiguration
 	@RestController
-	@EnableFeignClients(clients = { UrlClient.class, BeanUrlClient.class,
-			BeanUrlClientNoProtocol.class })
+	@EnableFeignClients(clients = { UrlClient.class,BeanUrlClient.class,BeanUrlClientNoProtocol.class})
 	@Import(NoSecurityConfiguration.class)
 	protected static class TestConfig {
 
